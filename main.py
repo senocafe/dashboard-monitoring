@@ -3,6 +3,8 @@
 Aplikasi deteksi gempa terkini
 Modularisasi Dengan Function
 Modularisasi dengan Package
+Import BS4
+Import httpx
 """
 import gempaterkini
 
