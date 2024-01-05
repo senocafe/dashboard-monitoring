@@ -3,20 +3,11 @@ Aplikasi deteksi gempa terkini
 Modularisasi Dengan Function
 """
 import httpx
-# import requests
+import requests
 from bs4 import BeautifulSoup
 
 def ekstraksi_data():
-    """
-    Tanggal: 13 Desember 2023
-    Waktu: 00:37:16 WIB
-    Magnitudo: 3.9
-    Kedalaman: 14 km
-    Lokasi: LS=0.73 BT=-119.62
-    Pusat Gempa: Pusat gempa berada di Laut 41 Km Barat Daya Donggala
-    Dirasakan: Dirasakan (Skala MMI): II-III Palu
-    :return:
-    """
+
     try:
         content = httpx.get('https://www.bmkg.go.id')
         #print(content.status_code)
@@ -61,8 +52,8 @@ def ekstraksi_data():
         #print(soup.prettify())
 
         hasil = dict()
-        hasil['tanggal'] = tanggal #'13 Desember 2023'
-        hasil['waktu'] = waktu #'00:37:16 WIB'
+        hasil['tanggal'] = tanggal
+        hasil['waktu'] = waktu
         hasil['magnitudo'] = magnitude
         hasil['kedalaman'] = kedalaman
         hasil['koordinat'] = {'ls': ls, 'bt':bt}
@@ -78,13 +69,13 @@ def tampilkan_data(result):
     if result is None:
         print('Tidak bisa menampilkan data gempa terkini')
         return
-    print('Gempa Terakhir berdasarkan BMKG')
+    print('Gempa Terakhir berdasarkan BMKG Indonesia')
     print(f"Tanggal {result['tanggal']}")
     print(f"Waktu {result['waktu']}")
     print(f"Magnitudo {result['magnitudo']}")
     print(f"Kedalaman {result['kedalaman']}")
     print(f"Koordinat: LS={result['koordinat']['ls']}, BT={result['koordinat']['bt']} ")
-    print(f"lokasi {result['lokasi']}")
+    print(f"Lokasi {result['lokasi']}")
     print(f"Dirasakan {result['dirasakan']}")
 
 
